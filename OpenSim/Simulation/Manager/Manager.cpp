@@ -52,6 +52,8 @@ Manager::Manager(Model& model) : Manager(model, true)
 {
     _defaultInteg.reset(
             new SimTK::RungeKuttaMersonIntegrator(_model->getMultibodySystem()));
+    vi->setAccuracy(1e-6); // reduce accuracy saves time
+    _defaultInteg.reset(vi);
     _integ = *_defaultInteg;
 }
 
